@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+	id="WebApp_ID" version="4.0">
+	<display-name>Web_Development_Telusko</display-name>
+	<!--Calculator Servlet -->
+	<servlet>
+		<servlet-name>M0</servlet-name>
+		<servlet-class>mypack.Calculator</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>M0</servlet-name>
+		<url-pattern>/calculation</url-pattern>
+	</servlet-mapping>
+	<!--Addition Servlet -->
+	<servlet>
+		<servlet-name>A</servlet-name>
+		<servlet-class>mypack.Addition</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>A</servlet-name>
+		<url-pattern>/ad</url-pattern>
+	</servlet-mapping>
+	<!-- Subtraction Servlet -->
+	<servlet>
+		<servlet-name>S</servlet-name>
+		<servlet-class>mypack.Subtraction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>S</servlet-name>
+		<url-pattern>/su</url-pattern>
+	</servlet-mapping>
+	<!-- Multiplication Servlet -->
+	<servlet>
+		<servlet-name>M</servlet-name>
+		<servlet-class>mypack.Multiplication</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>M</servlet-name>
+		<url-pattern>/mu</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>D</servlet-name>
+		<servlet-class>mypack.Division</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>D</servlet-name>
+		<url-pattern>/di</url-pattern>
+	</servlet-mapping>
+</web-app>
