@@ -18,12 +18,12 @@ public class Division extends HttpServlet {
 		resp.setContentType("text/html");
 		out.println("<h2 style=\"color:blue;text-align:center\">Division Servlet!</h2>");
 
-		float i = (float) req.getAttribute("ii");
-		float j = (float) req.getAttribute("jj");
-
+		float i = Float.parseFloat(req.getParameter("i"));
+		float j = Float.parseFloat(req.getParameter("j"));
+		
 		float k = i / j;
 
-		out.println("<h2 style=\"color:green;text-align:center\">Division result: " + k + " ! </h2>");
+		out.println("<h2 style=\"color:green;text-align:center\">Division result: " + k + "</h2>");
 		out.close();
 
 	}

@@ -3,7 +3,7 @@ package mypack;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.servlet.RequestDispatcher;
+//import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,39 +15,33 @@ public class Calculator extends HttpServlet {
 
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 
-		float i = Float.parseFloat(req.getParameter("n1"));
-		float j = Float.parseFloat(req.getParameter("n2"));
+		int i = Integer.parseInt(req.getParameter("n1"));
+		int j = Integer.parseInt(req.getParameter("n2"));
 		String act = req.getParameter("operation");
-
-		// Sending user data to another servlet using request object
-		req.setAttribute("ii", i); // key-value pair
-		req.setAttribute("jj", j); // key-value pair
-
+		
 		String urlP = null;
 
 		switch (act) {
 		case "Add":
-			urlP = "ad";
+			urlP = "ad" + "?" + "i=" + i + "&" + "j=" + j;
 			break;
 		case "Subtract":
-			urlP = "su";
+			urlP = "su" + "?" + "i=" + i + "&" + "j=" + j;
 			break;
 		case "Multiply":
-			urlP = "mu";
+			urlP = "mu" + "?" + "i=" + i + "&" + "j=" + j;
 			break;
 		case "Divide":
-			urlP = "di";
+			urlP = "di" + "?" + "i=" + i + "&" + "j=" + j;
 			break;
 		default:
 			PrintWriter out = resp.getWriter();
 			resp.setContentType("text/html");
-			out.println("<h1>Server Error!</h1>");
+			out.println("<h1>Enter the values!</h1>");
 			out.close();
 			break;
 		}
 
-		RequestDispatcher rd = req.getRequestDispatcher(urlP); // urlP : url-pattern of the second servlet
-		rd.forward(req, resp);
-
+		resp.sendRedirect(urlP);
 	}
 }
