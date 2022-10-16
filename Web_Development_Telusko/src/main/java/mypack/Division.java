@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "D", urlPatterns = { "/di" })
 public class Division extends HttpServlet {
@@ -18,8 +19,12 @@ public class Division extends HttpServlet {
 		resp.setContentType("text/html");
 		out.println("<h2 style=\"color:blue;text-align:center\">Division Servlet!</h2>");
 
-		float i = (float) req.getAttribute("ii");
-		float j = (float) req.getAttribute("jj");
+		/*	Hold the session and get values	*/
+		HttpSession session = req.getSession();
+		
+		float i = (float) session.getAttribute("i");
+		float j = (float) session.getAttribute("j");
+		/*	Retrived data from session	*/
 
 		float k = i / j;
 

@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 @WebServlet(name = "A", urlPatterns = { "/ad" })
 public class Addition extends HttpServlet {
@@ -18,9 +20,14 @@ public class Addition extends HttpServlet {
 		resp.setContentType("text/html");
 		out.println("<h2 style=\"color:blue;text-align:center\">Addition Servlet!</h2>");
 
-		float i = (float) req.getAttribute("ii");
-		float j = (float) req.getAttribute("jj");
-
+		/*	All servlet must have hold on the session	*/
+		HttpSession session = req.getSession();
+		
+		float i = (float) session.getAttribute("i");
+		float j = (float) session.getAttribute("j");
+		
+		/*	Now data is retrived in another servlet using the same session	*/
+		
 		float k = i + j;
 
 		out.println("<h2 style=\"color:green;text-align:center\">Addition result: " + k + " ! </h2>");

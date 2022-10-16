@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "S", urlPatterns = { "/su" })
 public class Subtraction extends HttpServlet {
@@ -18,8 +19,12 @@ public class Subtraction extends HttpServlet {
 		resp.setContentType("text/html");
 		out.println("<h2 style=\"color:blue;text-align:center\">Subtract Servlet!</h2>");
 
-		float i = (float) req.getAttribute("ii");
-		float j = (float) req.getAttribute("jj");
+		/*	Hold on session	- below	*/
+		HttpSession session = req.getSession();
+		
+		float i = (float) session.getAttribute("i");
+		float j = (float) session.getAttribute("j");
+		/*	Retrived data from session - above	*/
 
 		float k = i - j;
 
