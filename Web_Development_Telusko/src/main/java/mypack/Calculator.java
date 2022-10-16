@@ -3,9 +3,9 @@ package mypack;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,10 +19,16 @@ public class Calculator extends HttpServlet {
 		float j = Float.parseFloat(req.getParameter("n2"));
 		String act = req.getParameter("operation");
 
-		// Sending user data to another servlet using request object
-		req.setAttribute("ii", i); // key-value pair
-		req.setAttribute("jj", j); // key-value pair
-
+		/*	How to create Cookies - Start	*/
+		/*	Cookie is sent by server through RESPONSE object. Again the
+		 * 	same cookie is sent to server by client	*/
+		Cookie cookie1 = new Cookie("i", i+"");	//	+"" => converts to string 'i'
+		Cookie cookie2 = new Cookie("j", j+"");
+		resp.addCookie(cookie1);
+		resp.addCookie(cookie2);
+		/*	Server:	Cookies is created and attached to RESP object	*/
+		/*	How to create Cookies - END		*/
+		
 		String urlP = null;
 
 		switch (act) {
@@ -45,9 +51,7 @@ public class Calculator extends HttpServlet {
 			out.close();
 			break;
 		}
-
-		RequestDispatcher rd = req.getRequestDispatcher(urlP); // urlP : url-pattern of the second servlet
-		rd.forward(req, resp);
-
+		
+		resp.sendRedirect(urlP);
 	}
 }
